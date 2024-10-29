@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
-
 from services.previsao import Prever
+
+import uvicorn
 
 app = FastAPI(title="TechFinance ML")
 
@@ -13,3 +14,6 @@ def previsao(produto: str):
     previsao = prever.realizar_previsao('data/dados.xlsx')
 
     return previsao
+
+if __name__ == '__main__':
+    uvicorn.run(app, port=8080, host='0.0.0.0')
